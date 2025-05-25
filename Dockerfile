@@ -81,7 +81,8 @@ RUN usermod -a -G sudo adj
 
 ADD ./overlay/  /
 RUN echo "## zsh config ..."
-RUN sh  install.sh
+# RUN sh  install.sh
+RUN sh -c "$(wget -qO- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 RUN cp -r /root/.oh-my-zsh/ /home/adj/
 RUN cp /root/.zshrc /home/adj/.zshrc
 
