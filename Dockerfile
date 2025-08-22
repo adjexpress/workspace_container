@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:latest
 
 
 RUN sed -i -e 's/main/main contrib/' /etc/apt/sources.list
@@ -61,6 +61,7 @@ RUN apt-get update && apt-get install -y \
     python3-apt \
     liblzo2-dev
 
+
 RUN apt-get update && apt-get install -y -f
 
 RUN apt-get update && apt-get install -y locales libclang-dev pkg-config qemu-user-static systemd-container libusb-1.0-0 zsh graphviz sshpass
@@ -85,6 +86,17 @@ RUN echo "## zsh config ..."
 RUN sh -c "$(wget -qO- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 RUN cp -r /root/.oh-my-zsh/ /home/adj/
 RUN cp /root/.zshrc /home/adj/.zshrc
+
+
+# Android build env
+RUN apt-get install git ccache automake flex lzop bison \
+	gperf build-essential zip curl zlib1g-dev zlib1g-dev \
+	g++-multilib libxml2-utils bzip2 libbz2-dev \
+	libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush \
+	schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev \
+	pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl \
+	libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev \
+	x11proto-core-dev libx11-dev lib32z-dev libgl1-mesa-dev xsltproc unzip
 
 USER adj
 
