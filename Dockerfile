@@ -89,7 +89,7 @@ RUN cp /root/.zshrc /home/adj/.zshrc
 
 
 # Android build env
-RUN apt-get install git ccache automake flex lzop bison \
+RUN apt-get update && apt-get install -y git ccache automake flex lzop bison \
 	gperf build-essential zip curl zlib1g-dev zlib1g-dev \
 	g++-multilib libxml2-utils bzip2 libbz2-dev \
 	libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush \
